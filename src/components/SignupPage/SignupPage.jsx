@@ -7,8 +7,7 @@ function SignupPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [nationality, setNationality] = useState("");
 
-  const emailIsValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
+  const emailIsValid = email.includes("@") && email.includes(".");
   const messages = {
     fi: "Moi",
     en: "Hello",
