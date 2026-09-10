@@ -1,45 +1,38 @@
-# Self-Assessment: BookCollectionManager.jsx
+# Book Collection Manager - Self Assessment
 
+## Individual Score
 
-## 1. Functionality
-- **Does the component meet the requirements?**
-  - [ ] Does it handle all the specified features (e.g., adding, removing, or updating books)?
-  - [ ] Are edge cases handled (e.g., empty inputs, duplicate entries)?
-  - [ ] Are there any bugs or unexpected behaviors?
+I would give myself 13/15.
 
-- **How well does the component integrate with other parts of the application?**
-  - [ ] Are props and state managed appropriately?
+I used React useState to manage the book collection and all form inputs. The inputs are controlled components, and the application supports adding, displaying, and deleting books.
 
-## 2. Code Quality
-- **Readability**
-  - [ ] Is the code easy to understand for other developers?
-  - [ ] Are variable and function names descriptive and meaningful?
+I deducted some points because the component could still be improved with more advanced validation and additional features.
 
-- **Reusability**
-  - [ ] Can the component or parts of it be reused in other parts of the application?
+## Group Score
 
-- **Comments and Documentation**
-  - [ ] Are there comments explaining complex logic?
-  - [ ] Is there documentation for how to use the component?
+I would give the group 30/35.
 
-## 3. Performance
-- **Efficiency**
-  - [ ] Are there any unnecessary re-renders or performance bottlenecks?
-  - [ ] Is the component optimized for large datasets (if applicable)?
+The team worked on separate branches and developed different components. The components can be combined into the same React application, and the project can be tested and prepared for deployment.
 
-- **State Management**
-  - [ ] Is state managed efficiently (e.g., minimal state, derived state)?
-  - [ ] Are hooks (e.g., `useState`, ) used correctly?
+## My Contribution
 
-## 4. Overall Assessment
-- **Strengths**
-  - List the strengths of the component.
+I developed the Book Collection Manager component.
 
-- **Areas for Improvement**
-  - List areas where the component could be improved.
+My contribution includes:
 
-- **Action Plan**
-  - Outline specific steps to address the areas for improvement.
+- Creating the book form
+- Managing the book collection with useState
+- Using controlled inputs
+- Adding books to the collection
+- Displaying books with map()
+- Creating a separate Book component
+- Adding delete functionality
+- Styling the Book Collection Manager
 
-## 5. Additional Notes
-- Add any other relevant observations or feedback about the component.
+## Honest Code Assessment
+
+The code is organized into a manager component and a separate Book component. The form inputs are controlled and the main CRUD flow required by the assignment works.
+
+One area that could be improved is form validation. More detailed validation and better user feedback could be added in the future.
+
+Overall, I think the component meets the main requirements of the assignment and the code is readable and understandable.
