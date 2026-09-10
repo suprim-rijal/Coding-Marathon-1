@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./ContactListManager.css";
+import Contact from "./Contact";
 
 function ContactListManager() {
   const [contacts, setContacts] = useState([]);
@@ -117,13 +118,16 @@ function ContactListManager() {
           onChange={handleChange}
           className="input-field"
         />
-        <input
-          type="checkbox"
-          name="favourite"
-          checked={newContact.favourite}
-          onChange={handleChange}
-          className="input-field"
-        />
+      <label className="checkbox-label">
+          <input
+            type="checkbox"
+            name="favourite"
+            checked={newContact.favourite}
+            onChange={handleChange}
+            className="checkbox-input"
+          />
+          Add to Favourite
+        </label>
         <button onClick={addContact} className="add-button">
           Add Contact
         </button>
@@ -138,26 +142,11 @@ function ContactListManager() {
         ) : (
           <ol className="contacts-list">
             {contacts.map((contact, index) => (
-              <li key={index} className="contact-item">
-                <div className="contact-info">
-                  <span className="contact-name">{contact.name}</span>
-                  <span className="contact-email">{contact.email}</span>
-                  <span className="contact-phone">{contact.phone}</span>
-                  <span className="contact-job_title">{contact.job_title}</span>
-                  <span className="contact-birthday">{contact.birthday}</span>
-                  <span className="contact-notes">{contact.notes}</span>
-                  <span className="contact-website">{contact.website}</span>
-                  <span className="contact-favourite">
-                    {contact.favourite ? "Favourite: ✅" : "Favourite: ❌"}
-                  </span>
-                </div>
-                <button
-                  onClick={() => deleteContact(index)}
-                  className="delete-button"
-                >
-                  Delete
-                </button>
-              </li>
+              <Contact
+                key={index}
+                contact={contact}
+                onDelete={() => deleteContact(index)}
+              />
             ))}
           </ol>
         )}
