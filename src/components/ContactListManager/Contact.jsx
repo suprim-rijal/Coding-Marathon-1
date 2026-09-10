@@ -10,6 +10,7 @@ function Contact({contact, onDelete}){
                   <span className="contact-notes">{contact.notes}</span>
                   <span className="contact-website">{contact.website}</span>
                   <span className="contact-favourite">
+                    {/* if true ==> Favourite: ✅ else "Favourite: ❌"*/}
                     {contact.favourite ? "Favourite: ✅" : "Favourite: ❌"}
                   </span>
                 </div>

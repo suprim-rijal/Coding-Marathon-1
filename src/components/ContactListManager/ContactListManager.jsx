@@ -4,6 +4,7 @@ import Contact from "./Contact";
 
 function ContactListManager() {
   const [contacts, setContacts] = useState([]);
+  //State for controlling all the inputs of the form
   const [newContact, setNewContact] = useState({
     name: "",
     email: "",
@@ -20,12 +21,15 @@ function ContactListManager() {
     const { name, value, type, checked } = e.target;
     setNewContact((prev) => ({
       ...prev,
+      //checkbox uses 'checked', others are all 'value'
+      //syntax breakdown:[name]: if (type ===checkbox) ==>checked else ==> value
       [name]: type === "checkbox" ? checked : value,
     }));
   }
 
   // Add a new contact to the list
   function addContact() {
+    //validation -checking if empty field is passed or not (expect checkbox which is either true or false)
     if (
       newContact.name.trim() !== "" &&
       newContact.email.trim() !== "" &&
