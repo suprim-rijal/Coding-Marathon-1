@@ -4,26 +4,32 @@ import "./ContactListManager.css";
 
 function ContactListManager() {
   const [contacts, setContacts] = useState([]);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-
+  const [newContact, setNewContact] = useState({name:'', email: '', phone:'', job_tile:'', birthday:'', notes:'', website:'', favourite:''});
   // Handle input change for name
-  function handleNameChange(event) {
-    setName(event.target.value);
-  }
+  // function handleNameChange(event) {
+  //   setName(event.target.value);
+  // }
 
-  // Handle input change for email
-  function handleEmailChange(event) {
-    setEmail(event.target.value);
-  }
+  // // Handle input change for email
+  // function handleEmailChange(event) {
+  //   setEmail(event.target.value);
+  // }
+function handleChange(e){
+  const {name, value} = e.target;
+  setNewContact((prev) => ({
+    ...prev,
+    [name]: value
+  }));
+}
+    
 
   // Add a new contact to the list
   function addContact() {
-    if (name.trim() !== "" && email.trim() !== "") {
-      setContacts((c) => [...c, { name, email }]);
-      setName("");
-      setEmail(""); // Clear the input fields
-    }
+    // if (newContact.trim() !== "" && .trim() !== "") {
+      setContacts((c) => [...c, newContact]);
+      setNewContact({name:'', email: '', phone:'', job_tile:'', birthday:'', notes:'', website:'', favourite:''});
+      
+    // }
   }
 
   // Delete a contact from the list
@@ -39,16 +45,18 @@ function ContactListManager() {
       <div className="input-section">
         <input
           type="text"
+          name='name'
           placeholder="Enter contact name..."
-          value={name}
-          onChange={handleNameChange}
+          value={newContact.name}
+          onChange={handleChange}
           className="input-field"
         />
         <input
           type="email"
+          name='email'
           placeholder="Enter email address..."
-          value={email}
-          onChange={handleEmailChange}
+          value={newContact.email}
+          onChange={handleChange}
           className="input-field"
         />
         <button onClick={addContact} className="add-button">
