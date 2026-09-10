@@ -6,8 +6,10 @@ function SignupPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [nationality, setNationality] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
   const emailIsValid = email.includes("@") && email.includes(".");
+
   const messages = {
     fi: "Moi",
     en: "Hello",
@@ -28,7 +30,9 @@ function SignupPage() {
       return;
     }
 
-    alert("Sign up successful!");
+    alert("Signup successful!");
+
+    setSubmitted(true);
   };
 
   return (
@@ -40,17 +44,14 @@ function SignupPage() {
         <label>Email</label>
 
         <input
-          className={
-            email && emailIsValid
-              ? "input-valid"
-              : email
-              ? "input-error"
-              : "signup-input"
-          }
+          className="signup-input"
           type="email"
           placeholder="Enter your email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setSubmitted(false);
+          }}
           required
         />
 
@@ -62,47 +63,31 @@ function SignupPage() {
           <p className="error-message">Your email is not valid</p>
         )}
 
-        {/* Password */}
         <label>Password</label>
 
         <input
-          className={
-            password && password.length < 6
-              ? "input-error"
-              : password
-              ? "input-valid"
-              : "signup-input"
-          }
+          className="signup-input"
           type="password"
           placeholder="Enter your password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            setSubmitted(false);
+          }}
           required
         />
 
-        {password && password.length < 6 && (
-          <p className="error-message">Your password is too weak</p>
-        )}
-
-        {password && password.length >= 6 && (
-          <p className="valid-message">Your password is strong</p>
-        )}
-
-        {/* Confirm Password */}
         <label>Confirm Password</label>
 
         <input
-          className={
-            confirmPassword && password === confirmPassword
-              ? "input-valid"
-              : confirmPassword
-              ? "input-error"
-              : "signup-input"
-          }
+          className="signup-input"
           type="password"
           placeholder="Confirm your password"
           value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
+          onChange={(e) => {
+            setConfirmPassword(e.target.value);
+            setSubmitted(false);
+          }}
           required
         />
 
@@ -114,13 +99,15 @@ function SignupPage() {
           <p className="error-message">Passwords do not match</p>
         )}
 
-        {/* Nationality */}
         <label>Nationality</label>
 
         <select
           className="signup-input"
           value={nationality}
-          onChange={(e) => setNationality(e.target.value)}
+          onChange={(e) => {
+            setNationality(e.target.value);
+            setSubmitted(false);
+          }}
           required
         >
           <option value="">Select nationality</option>
@@ -130,26 +117,17 @@ function SignupPage() {
           <option value="fr">French</option>
         </select>
 
-        <button type="submit">Sign up</button>
+        <button type="submit">Sign Up</button>
       </form>
 
-      {/* Results */}
-      {nationality && (
-        <p className="result-message">
-          {messages[nationality]}
-        </p>
-      )}
+      {submitted && (
+        <div className="result">
+          <p>{messages[nationality]}</p>
 
-      {email && (
-        <p className="result-message">
-          Your email address is: {email}
-        </p>
-      )}
+          <p>Your email address is: {email}</p>
 
-      {email && emailIsValid && (
-        <p className="result-message">
-          Your email address is correct
-        </p>
+          <p>Your email address is correct</p>
+        </div>
       )}
     </div>
   );
