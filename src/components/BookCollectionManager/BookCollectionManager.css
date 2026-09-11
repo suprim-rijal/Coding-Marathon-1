@@ -157,3 +157,11 @@
     flex-direction: column;
   }
 }
+.form-error {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 10px;
+  border-radius: 6px;
+  background: #f8d7da;
+  color: #842029;
+}

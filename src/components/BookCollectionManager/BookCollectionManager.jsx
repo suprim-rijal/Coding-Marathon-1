@@ -13,6 +13,7 @@ function BookCollectionManager() {
   const [pages, setPages] = useState("");
   const [rating, setRating] = useState("");
   const [year, setYear] = useState("");
+  const [error, setError] = useState("");
 
   function addBook(event) {
     event.preventDefault();
@@ -27,6 +28,22 @@ function BookCollectionManager() {
       !rating ||
       !year
     ) {
+      setError("Please fill in all fields.");
+      return;
+    }
+
+    if (Number(rating) < 0 || Number(rating) > 5) {
+      setError("Rating must be between 0 and 5.");
+      return;
+    }
+
+    if (Number(pages) < 1) {
+      setError("Pages must be at least 1.");
+      return;
+    }
+
+    if (Number(year) < 1 || Number(year) > new Date().getFullYear()) {
+      setError("Please enter a valid publication year.");
       return;
     }
 
@@ -52,6 +69,7 @@ function BookCollectionManager() {
     setPages("");
     setRating("");
     setYear("");
+    setError("");
   }
 
   function deleteBook(id) {
@@ -159,6 +177,8 @@ function BookCollectionManager() {
           />
         </div>
 
+        {error && <p className="form-error">{error}</p>}
+
         <button type="submit" className="add-button">
           Add Book
         </button>
@@ -177,7 +197,11 @@ function BookCollectionManager() {
         ) : (
           <div className="books-list">
             {books.map((book) => (
-              <Book key={book.id} book={book} onDelete={deleteBook} />
+              <Book
+                key={book.id}
+                book={book}
+                onDelete={deleteBook}
+              />
             ))}
           </div>
         )}
