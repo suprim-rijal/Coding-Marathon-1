@@ -1,9 +1,9 @@
 function Book({ book, onDelete }) {
   return (
-    <article className="book-card">
+    <article className="book-card" aria-labelledby={`book-title-${book.id}`}>
       <div className="book-card-header">
         <div>
-          <h3>{book.title}</h3>
+          <h3 id={`book-title-${book.id}`}>{book.title}</h3>
           <p className="book-author">by {book.author}</p>
         </div>
 
@@ -11,6 +11,7 @@ function Book({ book, onDelete }) {
           type="button"
           className="delete-button"
           onClick={() => onDelete(book.id)}
+          aria-label={`Delete ${book.title}`}
         >
           Delete
         </button>
